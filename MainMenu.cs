@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject controlsPanel; // Assign the ControlsPanel GameObject
-    [SerializeField] private GameObject highScoresPanel; // Assign the HighScoresPanel GameObject
-    [SerializeField] private Canvas mainMenuCanvas; // Assign the Canvas itself
+    [SerializeField] private GameObject mainMenuPanel; // Main Menu Panel
+    [SerializeField] private GameObject controlsPanel; // Controls Panel
+    [SerializeField] private GameObject highScoresPanel; // High Scores Panel
 
     private void Start()
     {
@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
 
     public void CloseControls()
     {
-        ShowPanel(mainMenuCanvas.gameObject); // Return to the Main Menu (Canvas)
+        ShowPanel(mainMenuPanel); // Return to the Main Menu (MainMenuPanel)
     }
 
     public void OpenHighScores()
@@ -34,19 +34,19 @@ public class MainMenu : MonoBehaviour
 
     public void CloseHighScores()
     {
-        ShowPanel(mainMenuCanvas.gameObject); // Return to the Main Menu (Canvas)
+        ShowPanel(mainMenuPanel); // Return to the Main Menu (MainMenuPanel)
     }
 
     private void InitializePanels()
     {
-        if (mainMenuCanvas == null || controlsPanel == null || highScoresPanel == null)
+        if (mainMenuPanel == null || controlsPanel == null || highScoresPanel == null)
         {
-            Debug.LogError("MainMenuCanvas, ControlsPanel, or HighScoresPanel is not assigned in the Inspector.");
+            Debug.LogError("MainMenuPanel, ControlsPanel, or HighScoresPanel is not assigned in the Inspector.");
             return;
         }
 
-        // Activate only the Main Menu at the start
-        mainMenuCanvas.gameObject.SetActive(true);
+        // Activate only the Main Menu panel at the start
+        mainMenuPanel.SetActive(true);
         controlsPanel.SetActive(false);
         highScoresPanel.SetActive(false);
     }
@@ -59,14 +59,12 @@ public class MainMenu : MonoBehaviour
             return;
         }
 
-        // Disable all panels first
-        mainMenuCanvas.gameObject.SetActive(false);
+        // Deactivate all panels
+        mainMenuPanel.SetActive(false);
         controlsPanel.SetActive(false);
         highScoresPanel.SetActive(false);
 
-        // Enable the selected panel
+        // Activate the requested panel
         panelToShow.SetActive(true);
-
-        
     }
 }

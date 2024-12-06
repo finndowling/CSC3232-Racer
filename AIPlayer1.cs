@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +20,6 @@ public class AIPlayer1 : Player1
 
         currentCheckpointIndex = 0;
         nextWaypoint = checkpointManager.Checkpoints[currentCheckpointIndex];
-        Debug.Log($"Starting target waypoint: {nextWaypoint.name}");
     }
 
     void Update()
@@ -29,9 +27,9 @@ public class AIPlayer1 : Player1
         if (nextWaypoint != null)
         {
             DriveTowardsWaypoint(nextWaypoint.position);
-
             float distanceToWaypoint = Vector3.Distance(myCar.GetPosition(), nextWaypoint.position);
-            if (distanceToWaypoint < 5f && !hasReachedCheckpoint) // Adjust threshold as needed
+
+            if (distanceToWaypoint < 5f && !hasReachedCheckpoint)
             {
                 hasReachedCheckpoint = true;
                 UpdateNextWaypoint();
@@ -75,6 +73,5 @@ public class AIPlayer1 : Player1
         currentCheckpointIndex = (currentCheckpointIndex + 1) % checkpointManager.Checkpoints.Count;
         nextWaypoint = checkpointManager.Checkpoints[currentCheckpointIndex];
         hasReachedCheckpoint = false;
-        Debug.Log($"{gameObject.name} updated target to: {nextWaypoint.name}");
     }
 }

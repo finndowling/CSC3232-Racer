@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckpointMan : MonoBehaviour
 {
     [SerializeField] private List<Transform> checkpoints; // Assign via Inspector
-    [SerializeField] private float checkpointProximityThreshold = 5f;
+    
 
     private Dictionary<GameObject, int> carCheckpointIndex = new Dictionary<GameObject, int>();
     private Dictionary<GameObject, List<float>> carLapTimes = new Dictionary<GameObject, List<float>>();
@@ -44,7 +44,7 @@ public class CheckpointMan : MonoBehaviour
 
         for (int i = 0; i < checkpoints.Count; i++)
         {
-            Debug.Log($"Checkpoint {i}: {checkpoints[i].name}");
+            //Debug.Log($"Checkpoint {i}: {checkpoints[i].name}");
         }
 
         // Find the human player
@@ -77,7 +77,7 @@ public class CheckpointMan : MonoBehaviour
 
         if (expectedCheckpoint == checkpoint)
         {
-            Debug.Log($"{car.name} reached checkpoint {currentCheckpointIndex}: {checkpoint.name}");
+            //Debug.Log($"{car.name} reached checkpoint {currentCheckpointIndex}: {checkpoint.name}");
 
             // Update the checkpoint index to the next checkpoint
             currentCheckpointIndex++;
@@ -99,7 +99,7 @@ public class CheckpointMan : MonoBehaviour
             if (carAI != null)
             {
                 carAI.UpdateNextWaypoint();
-                Debug.Log($"{car.name} notified to update its target checkpoint.");
+                //Debug.Log($"{car.name} notified to update its target checkpoint.");
             }
         }
         else

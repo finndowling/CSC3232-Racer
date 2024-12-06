@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Car : MonoBehaviour
@@ -7,8 +5,8 @@ public class Car : MonoBehaviour
     public Rigidbody rigid;
     public WheelCollider frontLeftWheel, frontRightWheel, rearLeftWheel, rearRightWheel;
     public float drivespeed, steerspeed;
-    private float horizontalInput, verticalInput;
 
+    private float horizontalInput, verticalInput;
     public Player1 driver;
 
     void Start()
@@ -42,31 +40,25 @@ public class Car : MonoBehaviour
         frontRightWheel.steerAngle = steering;
     }
 
-    // Adjust the wheel friction settings for better control
     private void AdjustWheelFriction()
     {
-        // Forward friction settings
         WheelFrictionCurve forwardFriction = frontLeftWheel.forwardFriction;
-        forwardFriction.stiffness = 2.0f; // Increase stiffness for better grip
+        forwardFriction.stiffness = 2.0f;
         frontLeftWheel.forwardFriction = forwardFriction;
         frontRightWheel.forwardFriction = forwardFriction;
         rearLeftWheel.forwardFriction = forwardFriction;
         rearRightWheel.forwardFriction = forwardFriction;
 
-        // Sideways friction settings
         WheelFrictionCurve sidewaysFriction = frontLeftWheel.sidewaysFriction;
-        sidewaysFriction.stiffness = 2.5f; // Adjust for improved turning
+        sidewaysFriction.stiffness = 2.5f;
         frontLeftWheel.sidewaysFriction = sidewaysFriction;
         frontRightWheel.sidewaysFriction = sidewaysFriction;
         rearLeftWheel.sidewaysFriction = sidewaysFriction;
         rearRightWheel.sidewaysFriction = sidewaysFriction;
-
-        Debug.Log("Wheel friction adjusted for better control.");
     }
 
     public float GetOrientation()
     {
-        // Use the Transform's rotation for consistent results
         return transform.eulerAngles.y;
     }
 

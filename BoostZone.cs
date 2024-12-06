@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class BoostZone : MonoBehaviour
 {
-    [SerializeField] private float boostMultiplier = 2f; // Multiplier for the boost speed
+    [SerializeField] private float boostMultiplier = 3f; // Multiplier for the boost speed
     [SerializeField] private float boostDuration = 2f;  // Duration of the boost in seconds
 
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the object entering the zone is the player
+        
         GameObject car = other.attachedRigidbody?.gameObject ?? other.transform.root.gameObject;
 
         if (car.CompareTag("Player"))
@@ -24,15 +24,13 @@ public class BoostZone : MonoBehaviour
     {
         float originalSpeed = car.drivespeed;
 
-        // Apply the boost
+        
         car.drivespeed *= boostMultiplier;
-        Debug.Log($"{car.name} entered the boost zone! Speed increased to {car.drivespeed}.");
-
-        // Wait for the boost duration
+        
         yield return new WaitForSeconds(boostDuration);
 
-        // Reset the speed to its original value
+        
         car.drivespeed = originalSpeed;
-        Debug.Log($"{car.name} boost ended. Speed reset to {car.drivespeed}.");
+        
     }
 }
